@@ -20,7 +20,7 @@ def link_records(anon_df, aux_df):
     """
     df = pd.merge(anon_df, aux_df, on=["age","zip3", "gender"])
     uni = df.groupby("anon_id").filter(lambda x: len(x) == 1)
-    return uni[["anon_id", "name"]]
+    return uni[["anon_id", "name"]].rename(columns={"name": "matched_name"})
 
 
 def deanonymization_rate(matches_df, anon_df):
